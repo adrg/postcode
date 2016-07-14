@@ -30,14 +30,13 @@ func Validate(code string) error {
 		return errors.New("Postal code cannot be empty")
 	}
 
-	rCode := []rune(code)
-	if len(rCode) < 2 {
+	format := []rune(code)
+	if len(format) < 2 {
 		return errors.New("Postal code cannot be shorter than 2 characters")
 	}
 
-	countryCode := string(rCode[:2])
-	for i, rc := range rCode {
-		r := rc
+	countryCode := string(format[:2])
+	for i, r := range format {
 		switch {
 		case unicode.IsDigit(r):
 			r = 'N'
@@ -45,13 +44,13 @@ func Validate(code string) error {
 			r = 'A'
 		}
 
-		rCode[i] = r
+		format[i] = r
 	}
 
-	if !inSlice(string(rCode), validFormats) {
-		if rCode[0] == 'A' && rCode[1] == 'A' {
-			rCode[0], rCode[1] = 'C', 'C'
-			if inSlice(string(rCode), validFormats) {
+	if !inSlice(string(format), validFormats) {
+		if format[0] == 'A' && format[1] == 'A' {
+			format[0], format[1] = 'C', 'C'
+			if inSlice(string(format), validFormats) {
 				if !inSlice(countryCode, countryCodes) {
 					return errors.New("Invalid country code")
 				}
