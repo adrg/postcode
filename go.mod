@@ -1,1 +1,3 @@
-module github.com/adrg/postcode
+module github.com/unitedwardrobe/postcode
+
+go 1.13
