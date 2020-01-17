@@ -11,57 +11,56 @@ func TestValidate(t *testing.T) {
 		expected    error
 	}{
 		{
-			description: "Paris_France_Valid",
+			description: "Paris, France",
 			input:       " 75008 ",
 			expected:    nil,
 		},
 		{
-			description: "Brussels_Belgium_Valid",
+			description: "Brussels, Belgium",
 			input:       " 1000 ",
 			expected:    nil,
 		},
 		{
-			description: "Utrecht_The_Netherlands_Valid",
+			description: "Utrecht, The Netherlands",
 			input:       " 3511 ax ",
 			expected:    nil,
 		},
 		{
-			description: "Utrecht_The_Netherlands_Alt_Valid",
+			description: "Utrecht, The Netherlands, Alt",
 			input:       " 3511AX ",
 			expected:    nil,
 		},
 		{
-			description: "Hannover_Germany_Valid",
+			description: "Hannover, Germany",
 			input:       " 30179 ",
 			expected:    nil,
 		},
 		{
-			description: "Empty_Postal_Code_Invalid",
+			description: "Empty postal code",
 			input:       "",
 			expected:    ErrEmpty,
 		},
 		{
-			description: "Short_Postal_Code_Invalid",
+			description: "Short postal code",
 			input:       "A",
 			expected:    ErrShort,
 		},
 		{
-			description: "Inexistent_Country_Code_Invalid",
+			description: "Inexistent country code",
 			input:       "TY 1234",
 			expected:    ErrInvalidCountry,
 		},
 		{
-			description: "Inexistent_Postal_Code_Format_Invalid",
+			description: "Inexistent postal code format",
 			input:       "11111111111",
 			expected:    ErrInvalidFormat,
 		},
 	}
 
 	for _, testCase := range testCases {
-		t.Run(testCase.description, func(t *testing.T) {
-			if err := Validate(testCase.input); err != testCase.expected {
-				t.Errorf("expected: %v; got: %v", err, testCase.expected)
-			}
-		})
+		t.Logf("Validating `%s` (%s)", testCase.input, testCase.description)
+		if err := Validate(testCase.input); err != testCase.expected {
+			t.Errorf("expected: %v; got: %v", err, testCase.expected)
+		}
 	}
 }
