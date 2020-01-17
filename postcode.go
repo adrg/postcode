@@ -22,7 +22,7 @@ import (
 	"unicode"
 )
 
-// Errors.
+// Possible validation errors.
 var (
 	ErrEmpty          = errors.New("postal code cannot be empty")
 	ErrShort          = errors.New("postal code cannot be shorter than 2 characters")
