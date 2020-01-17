@@ -22,17 +22,25 @@ import (
 	"unicode"
 )
 
+// Errors.
+var (
+	ErrEmpty          = errors.New("postal code cannot be empty")
+	ErrShort          = errors.New("postal code cannot be shorter than 2 characters")
+	ErrInvalidCountry = errors.New("invalid country code")
+	ErrInvalidFormat  = errors.New("invalid postal code format")
+)
+
 // Validate checks if the provided input string matches any of the
 // accepted postcode formats. If the validation fails, the function returns
 // an error specifying the cause.
 func Validate(code string) error {
 	if code = strings.ToUpper(strings.TrimSpace(code)); code == "" {
-		return errors.New("Postal code cannot be empty")
+		return ErrEmpty
 	}
 
 	format := []rune(code)
 	if len(format) < 2 {
-		return errors.New("Postal code cannot be shorter than 2 characters")
+		return ErrShort
 	}
 
 	countryCode := string(format[:2])
@@ -52,14 +60,14 @@ func Validate(code string) error {
 			format[0], format[1] = 'C', 'C'
 			if inSlice(string(format), validFormats) {
 				if !inSlice(countryCode, countryCodes) {
-					return errors.New("Invalid country code")
+					return ErrInvalidCountry
 				}
 
 				return nil
 			}
 		}
 
-		return errors.New("Invalid postal code format")
+		return ErrInvalidFormat
 	}
 
 	return nil
