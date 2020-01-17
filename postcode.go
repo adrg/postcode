@@ -43,6 +43,7 @@ func Validate(code string) error {
 		return ErrShort
 	}
 
+	// Map input postal code to format.
 	countryCode := string(format[:2])
 	for i, r := range format {
 		switch {
@@ -55,20 +56,21 @@ func Validate(code string) error {
 		format[i] = r
 	}
 
-	if !inSlice(string(format), validFormats) {
-		if format[0] == 'A' && format[1] == 'A' {
-			format[0], format[1] = 'C', 'C'
-			if inSlice(string(format), validFormats) {
-				if !inSlice(countryCode, countryCodes) {
-					return ErrInvalidCountry
-				}
-
-				return nil
-			}
-		}
-
-		return ErrInvalidFormat
+	if _, ok := formats[string(format)]; ok {
+		return nil
 	}
 
-	return nil
+	// Check if postal code is valid when accounting for the country code.
+	if format[0] == 'A' && format[1] == 'A' {
+		format[0], format[1] = 'C', 'C'
+		if _, ok := formats[string(format)]; ok {
+			if _, ok := countryCodes[countryCode]; !ok {
+				return ErrInvalidCountry
+			}
+
+			return nil
+		}
+	}
+
+	return ErrInvalidFormat
 }
