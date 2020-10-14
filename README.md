@@ -1,6 +1,8 @@
 postcode
 ========
-[![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat-square)](https://godoc.org/github.com/adrg/postcode)
+[![Build Status](https://github.com/adrg/postcode/workflows/CI/badge.svg)](https://github.com/adrg/postcode/actions?query=workflow%3ACI)
+[![Code coverage](https://codecov.io/gh/adrg/postcode/branch/master/graphs/badge.svg?branch=master)](https://codecov.io/gh/adrg/postcode)
+[![pkg.go.dev documentation](https://pkg.go.dev/badge/github.com/adrg/postcode)](https://pkg.go.dev/github.com/adrg/postcode)
 [![License: MIT](https://img.shields.io/badge/license-MIT-red.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![Go Report Card](https://goreportcard.com/badge/github.com/adrg/postcode)](https://goreportcard.com/report/github.com/adrg/postcode)
 
@@ -27,10 +29,9 @@ import (
 )
 
 func main() {
-	if err := postcode.Validate("10007"); err != nil {
-        // the postcode is not valid
-        // treat error
-	}
+    if err := postcode.Validate("10007"); err != nil {
+        // Treat error.
+    }
 }
 ```
 
