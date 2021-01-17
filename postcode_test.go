@@ -36,6 +36,11 @@ func TestValidate(t *testing.T) {
 			expected:    nil,
 		},
 		{
+			description: "Vilnius, Lithuania",
+			input:       "LT-00200",
+			expected:    nil,
+		},
+		{
 			description: "Empty postal code",
 			input:       "",
 			expected:    ErrEmpty,
@@ -60,7 +65,7 @@ func TestValidate(t *testing.T) {
 	for _, testCase := range testCases {
 		t.Logf("Validating `%s` (%s)", testCase.input, testCase.description)
 		if err := Validate(testCase.input); err != testCase.expected {
-			t.Errorf("expected: %v; got: %v", err, testCase.expected)
+			t.Errorf("expected: %v; got: %v", testCase.expected, err)
 		}
 	}
 }
