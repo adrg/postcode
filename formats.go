@@ -32,6 +32,7 @@ var formats = map[string]struct{}{
 	"CC-NNNN":       {},
 	"CC-NNNNN":      {},
 	"CCN NAA":       {},
+	"CCN-NNNN":      {},
 	"CCNN NAA":      {},
 	"CCNNN":         {},
 	"CCNNNN":        {},
