@@ -1,3 +1,3 @@
-module github.com/johnjacob-nh/postcode
+module github.com/adrg/postcode
 
 go 1.14
