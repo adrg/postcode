@@ -7,6 +7,7 @@ package postcode
 // * N = number
 // * CC = ISO 3166-1 alpha-2 country code
 var formats = map[string]struct{}{
+	"ANNNNAAA":      {},
 	"AA NNNNN":      {},
 	"AA-NNNN":       {},
 	"AA-NNNN-NNNN":  {},
