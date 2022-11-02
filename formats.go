@@ -9,6 +9,7 @@ package postcode
 var formats = map[string]struct{}{
 	"AA NNNNN":      {},
 	"AA-NNNN":       {},
+	"AA-NNNN-NNNN":  {},
 	"AAA NNNN":      {},
 	"AAA NNNN-NNNN": {},
 	"AAA":           {},
