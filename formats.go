@@ -40,6 +40,7 @@ var formats = map[string]struct{}{
 	"NNN NNN":       {},
 	"NNN":           {},
 	"NNN-NN":        {},
+	"NNN-NNN":       {},
 	"NNN-NNNN":      {},
 	"NNNN NNNN":     {},
 	"NNNN":          {},
