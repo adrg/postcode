@@ -51,12 +51,12 @@ func TestValidate(t *testing.T) {
 			expected:    ErrShort,
 		},
 		{
-			description: "Inexistent country code",
+			description: "Non-existant country code",
 			input:       "TY 1234",
 			expected:    ErrInvalidCountry,
 		},
 		{
-			description: "Inexistent postal code format",
+			description: "Non-existant postal code format",
 			input:       "11111111111",
 			expected:    ErrInvalidFormat,
 		},
