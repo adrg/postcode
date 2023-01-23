@@ -34,6 +34,11 @@ func main() {
     if err := postcode.Validate("10007"); err != nil {
         // Treat error.
     }
+
+	postCodeValidator := NewPostCodeValidator()
+    if isValid := postCodeValidator.ValidatePostalCode("FR", "1000"); !isValid {
+        // Do stuff here
+    }
 }
 ```
 
