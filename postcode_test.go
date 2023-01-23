@@ -2,6 +2,8 @@ package postcode
 
 import (
 	"testing"
+
+	"gotest.tools/assert"
 )
 
 func TestValidate(t *testing.T) {
@@ -63,9 +65,6 @@ func TestValidate(t *testing.T) {
 	}
 
 	for _, testCase := range testCases {
-		t.Logf("Validating `%s` (%s)", testCase.input, testCase.description)
-		if err := Validate(testCase.input); err != testCase.expected {
-			t.Errorf("expected: %v; got: %v", testCase.expected, err)
-		}
+		assert.Equal(t, Validate(testCase.input), testCase.expected)
 	}
 }
