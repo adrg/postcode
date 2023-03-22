@@ -62,9 +62,16 @@ func TestValidate(t *testing.T) {
 			input:       "11111111111",
 			expected:    ErrInvalidFormat,
 		},
+		{
+			description: "Valid UK postcode",
+			input:       "KT11 1AT",
+			expected:    nil,
+		},
 	}
 
 	for _, testCase := range testCases {
-		assert.Equal(t, Validate(testCase.input), testCase.expected)
+		t.Run(testCase.description, func(tt *testing.T) {
+			assert.Equal(tt, Validate(testCase.input), testCase.expected)
+		})
 	}
 }

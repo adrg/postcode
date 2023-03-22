@@ -8,10 +8,11 @@ import (
 
 func TestValidateByCountry(t *testing.T) {
 	testCases := []struct {
-		description string
-		country     string
-		postCode    string
-		expected    bool
+		description   string
+		country       string
+		postCode      string
+		expected      bool
+		errorExpected bool
 	}{
 		{
 			description: "Paris, France",
@@ -62,10 +63,11 @@ func TestValidateByCountry(t *testing.T) {
 			expected:    false,
 		},
 		{
-			description: "Non-existant country code",
-			country:     "TY",
-			postCode:    "TY 1234",
-			expected:    false,
+			description:   "Non-existant country code",
+			country:       "TY",
+			postCode:      "TY 1234",
+			expected:      false,
+			errorExpected: true,
 		},
 		{
 			description: "Non-existant postal code format",
@@ -79,12 +81,23 @@ func TestValidateByCountry(t *testing.T) {
 			postCode:    "1111",
 			expected:    false,
 		},
+		{
+			description: "UK Postcode",
+			country:     "GB",
+			postCode:    "KT111AT",
+			expected:    true,
+		},
 	}
 
 	postCodeValidator := NewPostCodeValidator()
 
 	for _, testCase := range testCases {
-		isValid := postCodeValidator.ValidatePostalCode(testCase.country, testCase.postCode)
-		assert.Equal(t, isValid, testCase.expected)
+		t.Run(testCase.description, func(tt *testing.T) {
+			isValid, err := postCodeValidator.ValidatePostalCode(testCase.country, testCase.postCode)
+			if !testCase.errorExpected {
+				assert.NilError(tt, err)
+			}
+			assert.Equal(tt, isValid, testCase.expected)
+		})
 	}
 }

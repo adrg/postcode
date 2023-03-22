@@ -1,6 +1,7 @@
 package postcode
 
 import (
+	"errors"
 	"regexp"
 	"strings"
 )
@@ -13,7 +14,7 @@ type PostCodeValidator struct {
 func NewPostCodeValidator() *PostCodeValidator {
 	return &PostCodeValidator{
 		CountryRegexMapping: map[string]string{
-			"GB":   `^?i([A-Z]){1}([0-9][0-9]|[0-9]|[A-Z][0-9][A-Z]|[A-Z][0-9][0-9]|[A-Z][0-9]|[0-9][A-Z]){1}([ ])?([0-9][A-z][A-z]){1}$`,
+			"GB":   `^(?i)([A-Z]){1}([0-9][0-9]|[0-9]|[A-Z][0-9][A-Z]|[A-Z][0-9][0-9]|[A-Z][0-9]|[0-9][A-Z]){1}([ ])?([0-9][A-z][A-z]){1}$`,
 			"JE":   `^JE\d[\dA-Z]?[ ]?\d[ABD-HJLN-UW-Z]{2}$`,
 			"GG":   `^GY\d[\dA-Z]?[ ]?\d[ABD-HJLN-UW-Z]{2}$`,
 			"IM":   `^IM\d[\dA-Z]?[ ]?\d[ABD-HJLN-UW-Z]{2}$$`,
@@ -179,16 +180,16 @@ func NewPostCodeValidator() *PostCodeValidator {
 	}
 }
 
-func (v *PostCodeValidator) ValidatePostalCode(countryCode, postalCode string) bool {
+func (v *PostCodeValidator) ValidatePostalCode(countryCode, postalCode string) (bool, error) {
 	regexForCountry, ok := v.CountryRegexMapping[strings.ToUpper(countryCode)]
 	if !ok {
-		return false
+		return false, errors.New("country code not found")
 	}
 
 	regex, err := regexp.Compile(regexForCountry)
 	if err != nil {
-		return false
+		return false, errors.New("regex does not compile " + err.Error())
 	}
 
-	return regex.MatchString(strings.ToUpper(postalCode))
+	return regex.MatchString(strings.ToUpper(postalCode)), nil
 }
