@@ -2,6 +2,8 @@ package postcode
 
 import (
 	"testing"
+
+	"gotest.tools/assert"
 )
 
 func TestValidate(t *testing.T) {
@@ -51,21 +53,25 @@ func TestValidate(t *testing.T) {
 			expected:    ErrShort,
 		},
 		{
-			description: "Inexistent country code",
+			description: "Non-existant country code",
 			input:       "TY 1234",
 			expected:    ErrInvalidCountry,
 		},
 		{
-			description: "Inexistent postal code format",
+			description: "Non-existant postal code format",
 			input:       "11111111111",
 			expected:    ErrInvalidFormat,
+		},
+		{
+			description: "Valid UK postcode",
+			input:       "KT11 1AT",
+			expected:    nil,
 		},
 	}
 
 	for _, testCase := range testCases {
-		t.Logf("Validating `%s` (%s)", testCase.input, testCase.description)
-		if err := Validate(testCase.input); err != testCase.expected {
-			t.Errorf("expected: %v; got: %v", testCase.expected, err)
-		}
+		t.Run(testCase.description, func(tt *testing.T) {
+			assert.Equal(tt, Validate(testCase.input), testCase.expected)
+		})
 	}
 }
