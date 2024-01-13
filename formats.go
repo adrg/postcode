@@ -7,8 +7,10 @@ package postcode
 // * N = number
 // * CC = ISO 3166-1 alpha-2 country code
 var formats = map[string]struct{}{
+	"ANNNNAAA":      {},
 	"AA NNNNN":      {},
 	"AA-NNNN":       {},
+	"AA-NNNN-NNNN":  {},
 	"AAA NNNN":      {},
 	"AAA NNNN-NNNN": {},
 	"AAA":           {},
@@ -25,6 +27,7 @@ var formats = map[string]struct{}{
 	"ANA":           {},
 	"ANN":           {},
 	"ANNN":          {},
+	"CC-NNN":        {},
 	"CC NNNN":       {},
 	"CC-NNNN":       {},
 	"CC-NNNNN":      {},
@@ -40,6 +43,7 @@ var formats = map[string]struct{}{
 	"NNN NNN":       {},
 	"NNN":           {},
 	"NNN-NN":        {},
+	"NNN-NNN":       {},
 	"NNN-NNNN":      {},
 	"NNNN NNNN":     {},
 	"NNNN":          {},
@@ -48,6 +52,7 @@ var formats = map[string]struct{}{
 	"NNNNN":         {},
 	"NNNNN-NNN":     {},
 	"NNNNN-NNNN":    {},
+	"NNNNN-NNNNN":   {},
 	"NNNNNN":        {},
 	"NNNNNNN":       {},
 	"NNNNNNNNNN":    {},
