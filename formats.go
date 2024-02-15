@@ -53,6 +53,11 @@ var formats = map[string]struct{}{
 	"NNNNNNNNNN":    {},
 	"NNNNAA":        {},
 	"NNNN AA":       {},
+	"AANA NAA":      {},
+	"ANA NAA":       {},
+	"ANN NAA":       {},
+	"AN NAA":        {},
+	"AAA NAA":       {},
 }
 
 // Source: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
