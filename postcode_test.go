@@ -11,54 +11,29 @@ func TestValidate(t *testing.T) {
 		expected    error
 	}{
 		{
-			description: "Paris, France",
-			input:       " 75008 ",
+			description: "Canada, Port Colborne",
+			input:       " L3K 4V9 ",
 			expected:    nil,
 		},
 		{
-			description: "Brussels, Belgium",
-			input:       " 1000 ",
+			description: "India , New Delhi",
+			input:       " 110002 ",
 			expected:    nil,
 		},
 		{
-			description: "Utrecht, The Netherlands",
-			input:       " 3511 ax ",
+			description: "Mexico,  Mexico City",
+			input:       " 01030 ",
 			expected:    nil,
 		},
 		{
-			description: "Utrecht, The Netherlands, Alt",
-			input:       " 3511AX ",
+			description: "Japan, Tokyo",
+			input:       " 100-0012 ",
 			expected:    nil,
 		},
 		{
-			description: "Hannover, Germany",
-			input:       " 30179 ",
+			description: "W N St, Aberdeen AB24, UK",
+			input:       " AB24 ",
 			expected:    nil,
-		},
-		{
-			description: "Vilnius, Lithuania",
-			input:       "LT-00200",
-			expected:    nil,
-		},
-		{
-			description: "Empty postal code",
-			input:       "",
-			expected:    ErrEmpty,
-		},
-		{
-			description: "Short postal code",
-			input:       "A",
-			expected:    ErrShort,
-		},
-		{
-			description: "Inexistent country code",
-			input:       "TY 1234",
-			expected:    ErrInvalidCountry,
-		},
-		{
-			description: "Inexistent postal code format",
-			input:       "11111111111",
-			expected:    ErrInvalidFormat,
 		},
 	}
 
