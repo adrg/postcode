@@ -35,6 +35,26 @@ func TestValidate(t *testing.T) {
 			input:       " AB24 ",
 			expected:    nil,
 		},
+		{
+			description: "Empty postal code",
+			input:       "",
+			expected:    ErrEmpty,
+		},
+		{
+			description: "Short postal code",
+			input:       "A",
+			expected:    ErrShort,
+		},
+		{
+			description: "Inexistent country code",
+			input:       "TY 1234",
+			expected:    ErrInvalidCountry,
+		},
+		{
+			description: "Inexistent postal code format",
+			input:       "11111111111",
+			expected:    ErrInvalidFormat,
+		},
 	}
 
 	for _, testCase := range testCases {
