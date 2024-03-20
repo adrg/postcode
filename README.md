@@ -1,5 +1,4 @@
-postcode
-========
+# postcode (Fork)
 [![Build Status](https://github.com/adrg/postcode/workflows/CI/badge.svg)](https://github.com/adrg/postcode/actions?query=workflow%3ACI)
 [![Code coverage](https://codecov.io/gh/adrg/postcode/branch/master/graphs/badge.svg?branch=master)](https://codecov.io/gh/adrg/postcode)
 [![pkg.go.dev documentation](https://pkg.go.dev/badge/github.com/adrg/postcode)](https://pkg.go.dev/github.com/adrg/postcode)
@@ -8,18 +7,16 @@ postcode
 [![GitHub issues](https://img.shields.io/github/issues/adrg/postcode)](https://github.com/adrg/postcode/issues)
 [![Buy me a coffee](https://img.shields.io/static/v1.svg?label=%20&message=Buy%20me%20a%20coffee&color=579fbf&logo=buy%20me%20a%20coffee&logoColor=white)](https://ko-fi.com/T6T72WATK)
 
-Small package for validating postal codes. While the validation process does
-not guarantee that the postcode actually exists, it does guarantee that the
-format of the provided input is valid.
+**Note: This repository is a fork of the original [postcode](https://github.com/adrg/postcode) library. The original repository seems to be inactive, and this fork is actively maintained and updated. Please consider using this fork for any new projects or updates.**
 
-The reason for creating this package is that there is no good regular
-expression for validating postal codes, and even if it existed, it would have
-been huge and inefficient.
+Small package for validating postal codes. While the validation process does not guarantee that the postcode actually exists, it does guarantee that the format of the provided input is valid.
 
-Full documentation can be found at: https://pkg.go.dev/github.com/adrg/postcode.
+The reason for creating this package is that there is no good regular expression for validating postal codes, and even if it existed, it would have been huge and inefficient.
+
+Full documentation can be found at: https://godoc.org/github.com/adrg/postcode.
 
 ## Installation
-    go get github.com/adrg/postcode
+    go get git@github.com:aqibcs/postcode.git
 
 ## Usage
 
